@@ -219,8 +219,9 @@ html {
 @media (max-width: 768px) {
 	.Toastify__toast-container {
 		width: calc(100% - 2rem);
-		left: 1rem;
-		right: 1rem;
+		left: 50% !important;
+		right: auto !important;
+		transform: translateX(-50%);
 		padding: 0;
 		z-index: 1060 !important;
 	}
@@ -231,15 +232,19 @@ html {
 		font-size: 0.9rem;
 		padding: 0.75rem;
 		z-index: 1061 !important;
+		width: 100%;
 	}
 
 	.Toastify__toast--success .Toastify__toast-body {
 		font-size: 0.9rem;
 		padding: 0;
+		text-align: center;
 	}
 
 	.Toastify__toast-container--top-center {
 		top: 1rem;
+		left: 50% !important;
+		transform: translateX(-50%);
 	}
 }
 

@@ -177,3 +177,40 @@ html {
 	border-radius: 6px;
 	transform: scale(1.2);
 }
+
+/* Toastify custom styles */
+.Toastify__toast-container {
+	z-index: 10000;
+}
+
+.Toastify__toast {
+	border-radius: 15px;
+	box-shadow: 0 10px 30px rgba(219, 22, 88, 0.3);
+	font-family: inherit;
+}
+
+.Toastify__toast--success {
+	background: linear-gradient(135deg, #db1658 0%, #e72c6a 100%);
+	color: #ffffff;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.Toastify__toast--success .Toastify__toast-body {
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.Toastify__toast--success .Toastify__progress-bar {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.Toastify__close-button {
+	color: #ffffff;
+	opacity: 0.9;
+}
+
+.Toastify__close-button:hover {
+	opacity: 1;
+}
+

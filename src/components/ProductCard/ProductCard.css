@@ -1,0 +1,113 @@
+.product-card {
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	background: rgba(255, 255, 255, 0.9);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 8px 32px rgba(219, 22, 88, 0.1);
+	position: relative;
+	cursor: pointer;
+}
+
+.product-card:hover {
+	transform: translateY(-10px) scale(1.02);
+	box-shadow: 0 20px 40px rgba(219, 22, 88, 0.25), 0 0 30px rgba(231, 44, 106, 0.15);
+}
+
+.product-image-container {
+	height: 250px;
+	overflow: hidden;
+	background: linear-gradient(135deg, #f9cad8 0%, #f6b5ca 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.product-image {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	transition: transform 0.5s ease;
+}
+
+.product-image-container:hover .product-image {
+	transform: scale(1.1);
+}
+
+.product-placeholder {
+	color: #db1658;
+	font-size: 3rem;
+	opacity: 0.5;
+	animation: float 3s ease-in-out infinite;
+}
+
+.product-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(180deg, transparent 0%, rgba(219, 22, 88, 0.1) 100%);
+	pointer-events: none;
+}
+
+.product-card-body {
+	padding: 1.5rem;
+}
+
+.product-title {
+	background: linear-gradient(135deg, #db1658 0%, #e72c6a 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	margin-bottom: 1rem;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.product-description {
+	color: #dcb2c4;
+	flex-grow: 1;
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+}
+
+.product-price {
+	background: linear-gradient(135deg, #db1658 0%, #e72c6a 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+.product-button {
+	background: linear-gradient(135deg, #db1658 0%, #e72c6a 100%);
+	border: none;
+	border-radius: 25px;
+	padding: 0.6rem 1.8rem;
+	font-weight: 600;
+	box-shadow: 0 4px 15px rgba(219, 22, 88, 0.3);
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.product-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(219, 22, 88, 0.4);
+}
+
+.product-button:active {
+	transform: translateY(0);
+}
+
+.product-button span {
+	position: relative;
+	z-index: 1;
+}
+

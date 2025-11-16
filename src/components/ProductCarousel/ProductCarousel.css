@@ -1,0 +1,49 @@
+.product-carousel-section {
+	position: relative;
+	padding: 3rem 0;
+}
+
+.product-carousel-section.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.product-carousel-section.hidden {
+	opacity: 0;
+	transform: translateY(50px);
+}
+
+.product-carousel-section {
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.carousel-container {
+	position: relative;
+}
+
+.carousel-item-container {
+	height: 450px;
+	overflow: hidden;
+	border-radius: 25px;
+	position: relative;
+	box-shadow: 0 20px 60px rgba(219, 22, 88, 0.2);
+	background: linear-gradient(135deg, #f9cad8 0%, #f6b5ca 100%);
+}
+
+.carousel-image {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	transition: transform 0.5s ease;
+}
+
+.carousel-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(180deg, rgba(219, 22, 88, 0.1) 0%, transparent 50%, rgba(219, 22, 88, 0.1) 100%);
+	pointer-events: none;
+}
+

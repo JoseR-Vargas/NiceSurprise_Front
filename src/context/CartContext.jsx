@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
 		}
 	}, []);
 
-	const addToCart = (product) => {
+	const addToCart = (product, quantity = 1) => {
 		setCart((prevCart) => {
 			const existingItem = prevCart.find((item) => item.id === product.id);
 			let newCart;
@@ -35,19 +35,19 @@ export const CartProvider = ({ children }) => {
 			if (existingItem) {
 				newCart = prevCart.map((item) =>
 					item.id === product.id
-						? { ...item, quantity: item.quantity + 1 }
+						? { ...item, quantity: item.quantity + quantity }
 						: item
 				);
 				console.log('🛒 Producto actualizado en el carrito:', {
 					producto: product.title,
-					cantidad: existingItem.quantity + 1,
+					cantidad: existingItem.quantity + quantity,
 					precio: product.price,
 				});
 			} else {
-				newCart = [...prevCart, { ...product, quantity: 1 }];
+				newCart = [...prevCart, { ...product, quantity }];
 				console.log('🛒 Nuevo producto agregado al carrito:', {
 					producto: product.title,
-					cantidad: 1,
+					cantidad: quantity,
 					precio: product.price,
 				});
 			}
@@ -76,6 +76,20 @@ export const CartProvider = ({ children }) => {
 		});
 	};
 
+	const updateQuantity = (productId, quantity) => {
+		if (quantity <= 0) {
+			removeFromCart(productId);
+			return;
+		}
+		setCart((prevCart) => {
+			const newCart = prevCart.map((item) =>
+				item.id === productId ? { ...item, quantity } : item
+			);
+			localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(newCart));
+			return newCart;
+		});
+	};
+
 	const clearCart = () => {
 		setCart([]);
 		localStorage.removeItem(CART_STORAGE_KEY);
@@ -95,6 +109,7 @@ export const CartProvider = ({ children }) => {
 				cart,
 				addToCart,
 				removeFromCart,
+				updateQuantity,
 				clearCart,
 				getCartTotal,
 				getCartItemsCount,

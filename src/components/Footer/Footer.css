@@ -1,0 +1,110 @@
+.footer {
+	background: linear-gradient(135deg, #db1658 0%, #e72c6a 100%);
+	color: #ffffff;
+	position: relative;
+	overflow: hidden;
+	padding-top: 3rem;
+	padding-bottom: 2rem;
+	margin-top: 3rem;
+}
+
+.footer-background-1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+		radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+	pointer-events: none;
+}
+
+.footer-background-2 {
+	position: absolute;
+	top: -50%;
+	right: -10%;
+	width: 400px;
+	height: 400px;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.footer-container {
+	position: relative;
+	z-index: 1;
+}
+
+.footer-social-links {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+.footer-social-link {
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.15);
+	-webkit-backdrop-filter: blur(20px) saturate(180%);
+	backdrop-filter: blur(20px) saturate(180%);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+}
+
+.footer-social-link:hover {
+	background: rgba(255, 255, 255, 0.25);
+	transform: translateY(-4px) scale(1.03);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+	border-color: rgba(255, 255, 255, 0.4);
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.footer-social-link:active {
+	transform: translateY(-2px) scale(1.01);
+}
+
+.footer-social-icon {
+	margin-right: 0.6rem;
+}
+
+.footer-divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+	margin: 2rem 0 1.5rem;
+}
+
+.footer-location {
+	margin: 0;
+	font-size: 0.9rem;
+	opacity: 0.9;
+	letter-spacing: 0.3px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.footer-location-icon {
+	opacity: 0.8;
+}
+
+.footer-copyright {
+	margin: 0;
+	font-size: 0.85rem;
+	opacity: 0.85;
+	letter-spacing: 0.5px;
+	font-weight: 400;
+}
+

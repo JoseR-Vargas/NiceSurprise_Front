@@ -180,7 +180,7 @@ html {
 
 /* Toastify custom styles */
 .Toastify__toast-container {
-	z-index: 1060 !important;
+	z-index: 1070 !important;
 }
 
 .Toastify__toast {
@@ -245,6 +245,14 @@ html {
 		top: 1rem;
 		left: 50% !important;
 		transform: translateX(-50%);
+	}
+
+	.Toastify__toast-container--bottom-center {
+		bottom: 1rem;
+		left: 50% !important;
+		transform: translateX(-50%);
+		position: fixed !important;
+		z-index: 1070 !important;
 	}
 }
 

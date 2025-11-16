@@ -6,11 +6,13 @@
 .product-modal .modal-content {
 	border: none;
 	border-radius: 20px;
-	overflow: hidden;
+	overflow: visible;
 	box-shadow: 0 20px 60px rgba(219, 22, 88, 0.3);
 	max-height: calc(100vh - 4rem);
 	display: flex;
 	flex-direction: column;
+	position: relative;
+	z-index: 1055;
 }
 
 .product-modal .modal-body {
@@ -254,6 +256,9 @@
 		display: flex;
 		flex-direction: column;
 		box-shadow: 0 20px 60px rgba(219, 22, 88, 0.3);
+		position: relative;
+		z-index: 1055;
+		overflow: visible;
 	}
 
 	.product-modal .modal-body {

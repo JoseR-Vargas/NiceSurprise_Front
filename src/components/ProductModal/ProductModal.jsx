@@ -22,7 +22,7 @@ const ProductModal = ({ product, show, onHide }) => {
 		if (product) {
 			addToCart(product, quantity);
 			toast.success('Producto añadido al carrito', {
-				position: 'top-center',
+				position: 'bottom-center',
 				autoClose: 2000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -36,7 +36,7 @@ const ProductModal = ({ product, show, onHide }) => {
 		if (product) {
 			addToCart(product, quantity);
 			toast.success('Producto añadido al carrito', {
-				position: 'top-center',
+				position: 'bottom-center',
 				autoClose: 2000,
 				hideProgressBar: false,
 				closeOnClick: true,

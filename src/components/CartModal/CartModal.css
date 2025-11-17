@@ -312,3 +312,152 @@
 	}
 }
 
+/* Estilos del formulario de checkout */
+.checkout-form-container {
+	padding: 0;
+}
+
+.checkout-form-container .form-label {
+	color: #db1658;
+	font-weight: 600;
+	font-size: 0.95rem;
+	margin-bottom: 0.5rem;
+}
+
+.checkout-form-container .form-control {
+	border: 2px solid #dcb2c4;
+	border-radius: 10px;
+	padding: 0.75rem;
+	font-size: 0.95rem;
+	transition: all 0.3s ease;
+}
+
+.checkout-form-container .form-control:focus {
+	border-color: #db1658;
+	box-shadow: 0 0 0 0.2rem rgba(219, 22, 88, 0.25);
+}
+
+.checkout-form-container .form-control.is-invalid {
+	border-color: #dc3545;
+}
+
+.checkout-form-container .form-control.is-invalid:focus {
+	border-color: #dc3545;
+	box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.checkout-delivery-checkbox {
+	margin: 1rem 0;
+}
+
+.checkout-delivery-checkbox .form-check-input {
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid #dcb2c4;
+	cursor: pointer;
+}
+
+.checkout-delivery-checkbox .form-check-input:checked {
+	background-color: #db1658;
+	border-color: #db1658;
+}
+
+.checkout-delivery-checkbox .form-check-label {
+	color: #db1658;
+	font-weight: 600;
+	font-size: 1rem;
+	margin-left: 0.5rem;
+	cursor: pointer;
+}
+
+.checkout-payment-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.checkout-payment-btn {
+	width: 100%;
+	padding: 0.75rem 1.5rem;
+	font-weight: 600;
+	font-size: 1rem;
+	border-radius: 12px;
+	border: none;
+	transition: all 0.3s ease;
+}
+
+.checkout-payment-btn:first-child {
+	background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+	color: #ffffff;
+	box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.checkout-payment-btn:first-child:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.checkout-payment-btn:last-child {
+	background: linear-gradient(135deg, #009ee3 0%, #0073ce 100%);
+	color: #ffffff;
+	box-shadow: 0 4px 15px rgba(0, 158, 227, 0.3);
+}
+
+.checkout-payment-btn:last-child:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 158, 227, 0.4);
+}
+
+.text-danger {
+	color: #dc3545 !important;
+}
+
+.text-muted {
+	color: #dcb2c4 !important;
+	font-size: 0.85rem;
+}
+
+/* Mensaje para retirar */
+.checkout-retirar-message {
+	background: rgba(219, 22, 88, 0.1);
+	border: 2px solid rgba(219, 22, 88, 0.3);
+	border-radius: 12px;
+	padding: 1rem;
+	margin: 1rem 0;
+	text-align: center;
+}
+
+.checkout-retirar-message p {
+	color: #db1658;
+	font-weight: 600;
+	font-size: 1rem;
+	margin: 0;
+}
+
+/* Estilos mobile para checkout */
+@media (max-width: 768px) {
+	.checkout-form-container {
+		padding: 0;
+	}
+
+	.checkout-form-container .form-label {
+		font-size: 0.9rem;
+	}
+
+	.checkout-form-container .form-control {
+		padding: 0.65rem;
+		font-size: 0.9rem;
+	}
+
+	.checkout-payment-buttons {
+		margin-top: 1.5rem;
+		gap: 0.75rem;
+	}
+
+	.checkout-payment-btn {
+		padding: 0.65rem 1rem;
+		font-size: 0.95rem;
+	}
+}
+

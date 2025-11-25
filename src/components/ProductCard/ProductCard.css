@@ -24,12 +24,15 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	padding: 0.5rem;
 }
 
 .product-image {
-	object-fit: cover;
-	height: 100%;
-	width: 100%;
+	object-fit: contain;
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
 	transition: transform 0.5s ease;
 }
 

@@ -3,6 +3,9 @@ import { useState } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductModal from '../ProductModal/ProductModal';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import picada1 from '../../img/picada_1.jpeg';
+import arreglo1 from '../../img/arreglo_1.jpeg';
+import picada2 from '../../img/picada_2.jpeg';
 import './ProductsSection.css';
 
 const ProductsSection = () => {
@@ -24,24 +27,24 @@ const ProductsSection = () => {
 	const products = [
 		{
 			id: 1,
-			title: 'Arreglo de Cumpleaños Clásico',
+			title: 'PicArbolito',
 			description: 'Hermoso arreglo floral con globos y decoración especial para celebrar tu día especial.',
 			price: 45.99,
-			image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop',
+			image: picada1,
 		},
 		{
 			id: 2,
 			title: 'Detalle Romántico',
 			description: 'Caja sorpresa con rosas, chocolates y detalles personalizados para esa persona especial.',
 			price: 65.99,
-			image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=400&fit=crop',
+			image: arreglo1,
 		},
 		{
 			id: 3,
-			title: 'Celebración Premium',
+			title: 'Picada Navideña',
 			description: 'Paquete completo con arreglo floral, globos, decoración y detalles premium para una celebración inolvidable.',
 			price: 89.99,
-			image: 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=400&fit=crop',
+			image: picada2,
 		},
 	];
 

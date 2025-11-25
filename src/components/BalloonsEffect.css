@@ -1,0 +1,107 @@
+.balloons-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 9998;
+	overflow: hidden;
+}
+
+.balloon {
+	position: absolute;
+	bottom: -100px;
+	border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	animation: floatUp 4s ease-out forwards;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	opacity: 0.9;
+}
+
+.balloon::before {
+	content: '';
+	position: absolute;
+	top: 10%;
+	left: 20%;
+	width: 20%;
+	height: 20%;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+}
+
+.balloon-string {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 2px;
+	height: 60px;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+	animation: stringSway 2s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+	0% {
+		transform: translateY(0) translateX(0) scale(0.8);
+		opacity: 0.9;
+	}
+	50% {
+		transform: translateY(-50vh) translateX(calc(var(--sway, 0) * 20px)) scale(1);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(-120vh) translateX(calc(var(--sway, 0) * 30px)) scale(0.6);
+		opacity: 0;
+	}
+}
+
+@keyframes stringSway {
+	0%, 100% {
+		transform: translateX(-50%) rotate(-2deg);
+	}
+	50% {
+		transform: translateX(-50%) rotate(2deg);
+	}
+}
+
+/* Variación de movimiento para cada globo */
+.balloon:nth-child(odd) {
+	--sway: 1;
+	animation: floatUpLeft 4s ease-out forwards;
+}
+
+.balloon:nth-child(even) {
+	--sway: -1;
+	animation: floatUpRight 4s ease-out forwards;
+}
+
+@keyframes floatUpLeft {
+	0% {
+		transform: translateY(0) translateX(0) scale(0.8);
+		opacity: 0.9;
+	}
+	50% {
+		transform: translateY(-50vh) translateX(20px) scale(1);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(-120vh) translateX(30px) scale(0.6);
+		opacity: 0;
+	}
+}
+
+@keyframes floatUpRight {
+	0% {
+		transform: translateY(0) translateX(0) scale(0.8);
+		opacity: 0.9;
+	}
+	50% {
+		transform: translateY(-50vh) translateX(-20px) scale(1);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(-120vh) translateX(-30px) scale(0.6);
+		opacity: 0;
+	}
+}
+

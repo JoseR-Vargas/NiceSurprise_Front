@@ -8,6 +8,7 @@ import ProductsSection from './components/ProductsSection/ProductsSection';
 import Footer from './components/Footer/Footer';
 import ConfettiEffect from './components/ConfettiEffect';
 import BalloonsEffect from './components/BalloonsEffect';
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -30,6 +31,7 @@ function App() {
 					<TeamSection />
 				</main>
 				<Footer />
+				<WhatsAppButton />
 				<ToastContainer
 					position="top-center"
 					autoClose={2000}

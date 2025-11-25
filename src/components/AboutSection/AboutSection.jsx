@@ -31,15 +31,15 @@ const AboutSection = () => {
 								<p className="about-slogan">
 									Nice Surprise — Porque las emociones más lindas merecen ser celebradas en grande.
 								</p>
-								<div className="mt-4">
-									<a
-										href="https://www.instagram.com/_NiceSurprise"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="about-instagram-button"
-									>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
+							<div className="mt-4">
+								<a
+									href="https://www.instagram.com/__nicesurprise?igsh=Zjg4aWVlZW5nOWJz"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="about-instagram-button"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
 											width="20"
 											height="20"
 											fill="currentColor"

@@ -6,6 +6,7 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import picada1 from '../../img/picada_1.jpeg';
 import arreglo1 from '../../img/arreglo_1.jpeg';
 import picada2 from '../../img/picada_2.jpeg';
+import arreglo2 from '../../img/arreglo_2.jpeg';
 import './ProductsSection.css';
 
 const ProductsSection = () => {
@@ -27,24 +28,31 @@ const ProductsSection = () => {
 	const products = [
 		{
 			id: 1,
-			title: 'PicArbolito',
-			description: 'Hermoso arreglo floral con globos y decoración especial para celebrar tu día especial.',
+			title: 'PicArbolito Mágico 🎄✨',
+			description: 'Deliciosa picada artesanal en forma de árbol navideño. Incluye quesos premium, embutidos seleccionados, uvas frescas, aceitunas y crackers. Decorado con luces cálidas y una estrella dorada. Perfecto para celebrar en grande con estilo y sabor.',
 			price: 45.99,
 			image: picada1,
 		},
 		{
 			id: 2,
-			title: 'Detalle Romántico',
-			description: 'Caja sorpresa con rosas, chocolates y detalles personalizados para esa persona especial.',
-			price: 65.99,
+			title: 'Gatita Tierna 💕',
+			description: 'Caja sorpresa adorable con peluche, globos festivos, chocolates y dulces especiales. Un detalle perfecto lleno de ternura y amor para esa persona especial que ilumina tu vida.',
+			price: 76000,
 			image: arreglo1,
 		},
 		{
 			id: 3,
-			title: 'Picada Navideña',
-			description: 'Paquete completo con arreglo floral, globos, decoración y detalles premium para una celebración inolvidable.',
+			title: 'Picada Navideña Premium 🎅🎁',
+			description: 'Espectacular picada navideña en forma de árbol con los mejores ingredientes gourmet. Quesos artesanales, embutidos premium, frutos secos, uvas y aceitunas seleccionadas. Presentación elegante con estrella de queso y crackers. Ideal para compartir momentos especiales con los que más quieres.',
 			price: 89.99,
 			image: picada2,
+		},
+		{
+			id: 4,
+			title: 'Minnie Magic Box ✨',
+			description: 'Caja sorpresa mágica con Minnie Mouse, globos brillantes, dulces y detalles especiales para una celebración inolvidable llena de magia.',
+			price: 34600,
+			image: arreglo2,
 		},
 	];
 

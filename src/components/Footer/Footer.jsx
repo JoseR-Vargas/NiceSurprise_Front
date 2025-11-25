@@ -13,7 +13,7 @@ const Footer = () => {
 					<Col xs={12} className="text-center">
 						<div className="footer-social-links">
 							<a
-								href="https://www.instagram.com/_NiceSurprise"
+								href="https://www.instagram.com/__nicesurprise?igsh=Zjg4aWVlZW5nOWJz"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="footer-social-link"

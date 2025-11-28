@@ -153,6 +153,38 @@ const ProductModal = ({ product, show, onHide }) => {
 		console.log('Método de pago:', paymentMethod);
 		console.log('Datos del formulario:', formData);
 		
+		// Si es MercadoPago, redirigir al link de pago
+		if (paymentMethod === 'mercadopago') {
+			// Link específico para Gatita Tierna (id: 2)
+			let mercadoPagoLink = 'https://mpago.la/238UcnC';
+			
+			// Si el producto es "Gatita Tierna", usar el link específico
+			if (product && product.id === 2) {
+				mercadoPagoLink = 'https://mpago.la/238UcnC';
+			}
+			
+			window.open(mercadoPagoLink, '_blank');
+			
+			// Mostrar mensaje de éxito y cerrar modal
+			if (isMobile) {
+				setShowSuccessMessage(true);
+				setTimeout(() => {
+					setShowSuccessMessage(false);
+					handleClose();
+				}, 2000);
+			} else {
+				toast.success('Redirigiendo a MercadoPago...', {
+					position: 'top-right',
+					autoClose: 2000,
+				});
+				setTimeout(() => {
+					handleClose();
+				}, 2000);
+			}
+			return;
+		}
+		
+		// Para otros métodos de pago (transferencia)
 		if (isMobile) {
 			setShowSuccessMessage(true);
 			setTimeout(() => {

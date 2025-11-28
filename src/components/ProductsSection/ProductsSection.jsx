@@ -30,7 +30,7 @@ const ProductsSection = () => {
 			id: 1,
 			title: 'PicArbolito Mágico 🎄✨',
 			description: 'Deliciosa picada artesanal en forma de árbol navideño. Incluye quesos premium, embutidos seleccionados, uvas frescas, aceitunas y crackers. Decorado con luces cálidas y una estrella dorada. Perfecto para celebrar en grande con estilo y sabor.',
-			price: 45.99,
+			price: 38800,
 			image: picada1,
 		},
 		{
@@ -44,14 +44,14 @@ const ProductsSection = () => {
 			id: 3,
 			title: 'Picada Navideña Premium 🎅🎁',
 			description: 'Espectacular picada navideña en forma de árbol con los mejores ingredientes gourmet. Quesos artesanales, embutidos premium, frutos secos, uvas y aceitunas seleccionadas. Presentación elegante con estrella de queso y crackers. Ideal para compartir momentos especiales con los que más quieres.',
-			price: 89.99,
+			price: 36800,
 			image: picada2,
 		},
 		{
 			id: 4,
 			title: 'Minnie Magic Box ✨',
 			description: 'Caja sorpresa mágica con Minnie Mouse, globos brillantes, dulces y detalles especiales para una celebración inolvidable llena de magia.',
-			price: 34600,
+			price: 36800,
 			image: arreglo2,
 		},
 	];

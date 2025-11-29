@@ -16,16 +16,11 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 
 	useEffect(() => {
 		if (show && !redirected) {
-			// Abrir ventana en blanco de inmediato (gesto del usuario) para evitar bloqueos en mobile
-			if (!paymentWindowRef.current || paymentWindowRef.current.closed) {
-				paymentWindowRef.current = window.open('about:blank', '_blank');
-			}
 			// Después de 4 segundos, redirigir al link de Mercado Pago
 			const timer = setTimeout(() => {
-				if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
-					paymentWindowRef.current.location.href = MERCADOPAGO_LINK;
-				} else {
-					window.location.href = MERCADOPAGO_LINK;
+				const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
+				if (popup) {
+					paymentWindowRef.current = popup;
 				}
 				setRedirected(true);
 			}, 4000);
@@ -41,9 +36,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 			setError('');
 			setRedirected(false);
 			setShowSuccessMessage(false);
-			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
-				paymentWindowRef.current = null;
-			}
+			paymentWindowRef.current = null;
 		}
 	}, [show]);
 
@@ -101,9 +94,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 			setComprobante('');
 			setError('');
 			setShowSuccessMessage(false);
-			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
-				paymentWindowRef.current = null;
-			}
+			paymentWindowRef.current = null;
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}, 4000);
 	};

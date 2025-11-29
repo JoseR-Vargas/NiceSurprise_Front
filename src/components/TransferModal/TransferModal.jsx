@@ -87,19 +87,13 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
-		// Abrir ventana en el gesto del usuario para evitar bloqueos en mobile
-		const waWindow = window.open('about:blank', '_blank');
 
 		// Mostrar mensaje de éxito en el modal
 		setShowSuccessMessage(true);
 
-		// Mostrar confirmación 3s y luego redirigir a WhatsApp y cerrar
+		// Mostrar confirmación 3s y luego redirigir a WhatsApp (misma pestaña) y cerrar
 		setTimeout(() => {
-			if (waWindow) {
-				waWindow.location.href = whatsappUrl;
-			} else {
-				window.location.href = whatsappUrl;
-			}
+			window.location.href = whatsappUrl;
 			onHide();
 			setShowConfirmation(false);
 			setShowSuccessMessage(false);

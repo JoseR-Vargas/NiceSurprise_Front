@@ -462,7 +462,7 @@
 	border: 2px solid #dcb2c4;
 	border-radius: 10px;
 	padding: 0.75rem;
-	font-size: 0.95rem;
+	font-size: 16px; /* 16px mínimo para evitar zoom en iOS */
 	transition: all 0.3s ease;
 }
 
@@ -576,12 +576,12 @@
 	}
 
 	.checkout-form-container .form-label {
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 	}
 
 	.checkout-form-container .form-control {
-		padding: 0.65rem;
-		font-size: 0.9rem;
+		padding: 0.75rem;
+		font-size: 16px; /* 16px mínimo para evitar zoom automático en iOS */
 	}
 
 	.checkout-payment-buttons {
@@ -592,6 +592,19 @@
 	.checkout-payment-btn {
 		padding: 0.65rem 1rem;
 		font-size: 0.95rem;
+	}
+}
+
+/* Prevenir zoom en iOS al enfocar inputs */
+@supports (-webkit-touch-callout: none) {
+	/* Específico para iOS Safari */
+	input[type="text"],
+	input[type="tel"],
+	input[type="email"],
+	input[type="number"],
+	textarea,
+	select {
+		font-size: 16px !important;
 	}
 }
 

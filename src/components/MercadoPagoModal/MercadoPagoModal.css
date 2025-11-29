@@ -204,3 +204,12 @@
 		padding: 20px 15px;
 	}
 }
+
+/* Prevenir zoom en iOS al enfocar inputs */
+@supports (-webkit-touch-callout: none) {
+	/* Específico para iOS Safari */
+	.comprobante-input {
+		font-size: 16px !important;
+		letter-spacing: 4px !important;
+	}
+}

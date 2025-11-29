@@ -1,0 +1,423 @@
+.transfer-modal .modal-content {
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.transfer-modal-header {
+	background: linear-gradient(135deg, #e91e63 0%, #f48fb1 100%);
+	color: white;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom: none;
+	padding: 1.5rem;
+}
+
+.transfer-modal-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: white;
+}
+
+.transfer-modal-header .btn-close {
+	filter: brightness(0) invert(1);
+	opacity: 0.8;
+}
+
+.transfer-modal-header .btn-close:hover {
+	opacity: 1;
+}
+
+.transfer-modal-body {
+	padding: 2rem;
+	background: #fff;
+}
+
+.transfer-info {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.transfer-instructions {
+	text-align: center;
+	color: #555;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.transfer-data-section {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	background: #f8f9fa;
+	padding: 1.5rem;
+	border-radius: 12px;
+	border: 1px solid #e0e0e0;
+}
+
+.transfer-data-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.transfer-label {
+	font-weight: 600;
+	color: #e91e63;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin-bottom: 0;
+}
+
+.transfer-value-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	background: white;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	border: 1px solid #dee2e6;
+}
+
+.transfer-value {
+	font-size: 1rem;
+	color: #212529;
+	font-family: 'Courier New', monospace;
+	font-weight: 500;
+	word-break: break-all;
+	flex: 1;
+}
+
+.transfer-copy-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.375rem 0.75rem;
+	font-size: 0.875rem;
+	white-space: nowrap;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	border: 1px solid #e91e63;
+	color: #e91e63;
+	background: white;
+}
+
+.transfer-copy-btn:hover {
+	background: #e91e63;
+	color: white;
+	border-color: #e91e63;
+	transform: translateY(-1px);
+}
+
+.transfer-copy-btn:active {
+	transform: translateY(0);
+}
+
+.transfer-copy-btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+.transfer-note {
+	background: #fff3e0;
+	border-left: 4px solid #ff9800;
+	padding: 1rem;
+	border-radius: 8px;
+	margin-top: 0.5rem;
+}
+
+.transfer-note p {
+	margin: 0;
+	color: #e65100;
+	font-size: 0.9rem;
+	line-height: 1.6;
+}
+
+.transfer-note strong {
+	color: #d84315;
+}
+
+.transfer-modal-footer {
+	border-top: 1px solid #dee2e6;
+	padding: 1rem 1.5rem;
+	background: #f8f9fa;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.transfer-modal-footer .btn {
+	padding: 0.5rem 1.5rem;
+	border-radius: 8px;
+	font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.transfer-modal-body {
+		padding: 1.5rem;
+	}
+
+	.transfer-modal-title {
+		font-size: 1.25rem;
+	}
+
+	.transfer-value-container {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.5rem;
+	}
+
+	.transfer-copy-btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.transfer-value {
+		font-size: 0.875rem;
+		text-align: center;
+	}
+
+	.transfer-data-section {
+		padding: 1rem;
+	}
+}
+
+/* Mensaje de éxito */
+.transfer-success {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 2rem 1rem;
+	text-align: center;
+}
+
+.success-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+	border-radius: 50%;
+	animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.success-title {
+	color: #2e7d32;
+	font-weight: 700;
+	font-size: 1.75rem;
+	margin: 0;
+	animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.success-message {
+	font-size: 1.1rem;
+	color: #555;
+	margin: 0;
+	line-height: 1.6;
+	animation: fadeInUp 0.5s ease-out 0.3s both;
+}
+
+.success-message strong {
+	color: #2e7d32;
+	font-size: 1.3rem;
+	font-family: 'Courier New', monospace;
+}
+
+.success-info {
+	background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+	padding: 1.5rem;
+	border-radius: 12px;
+	border: 2px solid #2196f3;
+	animation: fadeInUp 0.5s ease-out 0.4s both;
+}
+
+.success-info p {
+	margin: 0 0 0.75rem 0;
+	color: #1565c0;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+.success-info p:last-child {
+	margin-bottom: 0;
+}
+
+.success-thanks {
+	font-weight: 600;
+	color: #e91e63 !important;
+	font-size: 1.1rem !important;
+	margin-top: 1rem;
+}
+
+.success-close-btn {
+	background: #4caf50;
+	border-color: #4caf50;
+	color: white;
+	padding: 0.5rem 2rem;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.success-close-btn:hover {
+	background: #388e3c;
+	border-color: #388e3c;
+	transform: translateY(-1px);
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Confirmación de transferencia */
+.transfer-confirmation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem 0;
+}
+
+.confirmation-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	background: #e8f5e9;
+	border-radius: 50%;
+	margin-bottom: 0.5rem;
+}
+
+.confirmation-title {
+	color: #2e7d32;
+	font-weight: 700;
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 0;
+}
+
+.confirmation-text {
+	text-align: center;
+	color: #555;
+	font-size: 1rem;
+	margin: 0;
+	max-width: 90%;
+}
+
+.confirmation-label {
+	font-weight: 600;
+	color: #e91e63;
+	font-size: 0.95rem;
+}
+
+.confirmation-input {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.5rem;
+	padding: 0.75rem;
+	border: 2px solid #dee2e6;
+	border-radius: 8px;
+	font-family: 'Courier New', monospace;
+}
+
+.confirmation-input:focus {
+	border-color: #e91e63;
+	box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+}
+
+.confirmation-note {
+	background: #e3f2fd;
+	border-left: 4px solid #2196f3;
+	padding: 1rem;
+	border-radius: 8px;
+	width: 100%;
+	margin-top: 0.5rem;
+}
+
+.confirmation-note p {
+	margin: 0;
+	color: #1565c0;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.transfer-next-btn {
+	background: #e91e63;
+	border-color: #e91e63;
+	color: white;
+	padding: 0.5rem 1.5rem;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.transfer-next-btn:hover {
+	background: #c2185b;
+	border-color: #c2185b;
+	transform: translateY(-1px);
+}
+
+.transfer-notify-btn {
+	background: #4caf50;
+	border-color: #4caf50;
+	color: white;
+	padding: 0.5rem 1.5rem;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.transfer-notify-btn:hover:not(:disabled) {
+	background: #388e3c;
+	border-color: #388e3c;
+	transform: translateY(-1px);
+}
+
+.transfer-notify-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Animación de entrada */
+.transfer-modal .modal-dialog {
+	animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

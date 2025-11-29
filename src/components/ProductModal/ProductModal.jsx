@@ -2,6 +2,7 @@ import { Modal, Button, Container, Row, Col, Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
+import TransferModal from '../TransferModal/TransferModal';
 import './ProductModal.css';
 
 const ProductModal = ({ product, show, onHide }) => {
@@ -10,6 +11,7 @@ const ProductModal = ({ product, show, onHide }) => {
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 	const [showCheckout, setShowCheckout] = useState(false);
+	const [showTransferModal, setShowTransferModal] = useState(false);
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -155,12 +157,22 @@ const ProductModal = ({ product, show, onHide }) => {
 		
 		// Si es MercadoPago, redirigir al link de pago
 		if (paymentMethod === 'mercadopago') {
-			// Link específico para Gatita Tierna (id: 2)
-			let mercadoPagoLink = 'https://mpago.la/238UcnC';
+			// Links específicos por producto
+			let mercadoPagoLink = 'https://mpago.la/238UcnC'; // Default
 			
-			// Si el producto es "Gatita Tierna", usar el link específico
-			if (product && product.id === 2) {
-				mercadoPagoLink = 'https://mpago.la/238UcnC';
+			// Asignar link según el producto
+			if (product && product.id === 1) {
+				// PicArbolito Mágico
+				mercadoPagoLink = 'https://mpago.la/2pt5Noz';
+			} else if (product && product.id === 2) {
+				// Gatita Tierna
+				mercadoPagoLink = 'https://mpago.la/2FZXnU7';
+			} else if (product && product.id === 3) {
+				// Picada Navideña Premium
+				mercadoPagoLink = 'https://mpago.la/1szSxfG';
+			} else if (product && product.id === 4) {
+				// Minnie Magic Box
+				mercadoPagoLink = 'https://mpago.la/1szSxfG';
 			}
 			
 			window.open(mercadoPagoLink, '_blank');
@@ -184,21 +196,10 @@ const ProductModal = ({ product, show, onHide }) => {
 			return;
 		}
 		
-		// Para otros métodos de pago (transferencia)
-		if (isMobile) {
-			setShowSuccessMessage(true);
-			setTimeout(() => {
-				setShowSuccessMessage(false);
-				handleClose();
-			}, 2000);
-		} else {
-			toast.success('Pedido procesado correctamente', {
-				position: 'top-right',
-				autoClose: 2000,
-			});
-			setTimeout(() => {
-				handleClose();
-			}, 2000);
+		// Para transferencia, mostrar modal con datos bancarios
+		if (paymentMethod === 'transferencia') {
+			setShowTransferModal(true);
+			return;
 		}
 	};
 
@@ -310,7 +311,8 @@ const ProductModal = ({ product, show, onHide }) => {
 								<div className="product-modal-details">
 									<h3 className="product-modal-price">${product.price}</h3>
 									<p className="product-modal-description">{product.description}</p>
-									<div className="product-modal-quantity">
+									{/* Controles de cantidad - Temporalmente deshabilitados */}
+									{/* <div className="product-modal-quantity">
 										<label className="product-modal-quantity-label">Cantidad:</label>
 										<div className="product-modal-quantity-controls">
 											<Button
@@ -332,7 +334,7 @@ const ProductModal = ({ product, show, onHide }) => {
 												+
 											</Button>
 										</div>
-									</div>
+									</div> */}
 									<div className="product-modal-features">
 										<h4>Características:</h4>
 										<ul>
@@ -526,13 +528,14 @@ const ProductModal = ({ product, show, onHide }) => {
 						<Button variant="outline-secondary" onClick={handleClose} className="product-modal-close-btn">
 							Cerrar
 						</Button>
-						<Button
+						{/* Botón Añadir al carrito - Temporalmente deshabilitado */}
+						{/* <Button
 							variant="primary"
 							onClick={handleAddToCart}
 							className="product-modal-add-btn"
 						>
 							Añadir al carrito
-						</Button>
+						</Button> */}
 						<Button
 							variant="primary"
 							onClick={handleBuyNow}
@@ -543,6 +546,10 @@ const ProductModal = ({ product, show, onHide }) => {
 					</>
 				)}
 			</Modal.Footer>
+			<TransferModal 
+				show={showTransferModal} 
+				onHide={() => setShowTransferModal(false)} 
+			/>
 		</Modal>
 	);
 };

@@ -29,7 +29,8 @@ const Header = () => {
 				<Navbar.Brand href="#home" className="header-brand">
 					Nice Surprise
 				</Navbar.Brand>
-				<div className="header-cart-widget header-cart-widget-mobile">
+				{/* Carrito mobile - Temporalmente deshabilitado */}
+				{/* <div className="header-cart-widget header-cart-widget-mobile">
 					<Nav.Link
 						href="#cart"
 						className="header-cart-link"
@@ -58,7 +59,7 @@ const Header = () => {
 							<span className="header-cart-badge">{cartItemsCount}</span>
 						)}
 					</Nav.Link>
-				</div>
+				</div> */}
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto align-items-center">
@@ -68,7 +69,8 @@ const Header = () => {
 						<Nav.Link href="#products" className="header-nav-link">
 							Productos
 						</Nav.Link>
-						<div className="header-cart-widget header-cart-widget-desktop">
+						{/* Carrito desktop - Temporalmente deshabilitado */}
+						{/* <div className="header-cart-widget header-cart-widget-desktop">
 							<Nav.Link
 								href="#cart"
 								className="header-cart-link"
@@ -97,7 +99,7 @@ const Header = () => {
 									<span className="header-cart-badge">{cartItemsCount}</span>
 								)}
 							</Nav.Link>
-						</div>
+						</div> */}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

@@ -47,7 +47,7 @@ const ProductCard = ({ product, onCardClick }) => {
 						className="product-button"
 						onMouseDown={(e) => e.stopPropagation()}
 					>
-						<span>Añadir al carrito</span>
+						<span>Comprar</span>
 					</Button>
 				</div>
 			</Card.Body>

@@ -87,13 +87,19 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
+		// Abrir ventana en el gesto del usuario para evitar bloqueos en mobile
+		const waWindow = window.open('about:blank', '_blank');
 
 		// Mostrar mensaje de éxito en el modal
 		setShowSuccessMessage(true);
 
-		// Mostrar confirmación 4s y luego abrir WhatsApp y cerrar
+		// Mostrar confirmación 3s y luego redirigir a WhatsApp y cerrar
 		setTimeout(() => {
-			window.open(whatsappUrl, '_blank');
+			if (waWindow) {
+				waWindow.location.href = whatsappUrl;
+			} else {
+				window.location.href = whatsappUrl;
+			}
 			onHide();
 			setShowConfirmation(false);
 			setShowSuccessMessage(false);
@@ -101,7 +107,7 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 			setDigitError('');
 			// Llevar al usuario al inicio de la página
 			window.scrollTo({ top: 0, behavior: 'smooth' });
-		}, 4000);
+		}, 3000);
 	};
 
 	const handleClose = () => {

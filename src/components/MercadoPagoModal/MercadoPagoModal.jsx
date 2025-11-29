@@ -1,5 +1,5 @@
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useCart } from '../../context/CartContext';
 import './MercadoPagoModal.css';
 
@@ -9,15 +9,24 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 	const [error, setError] = useState('');
 	const [redirected, setRedirected] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const paymentWindowRef = useRef(null);
 
 	// URL de Mercado Pago para PicArbolito Mágico
 	const MERCADOPAGO_LINK = 'https://mpago.la/2pt5Noz';
 
 	useEffect(() => {
 		if (show && !redirected) {
+			// Abrir ventana en blanco de inmediato (gesto del usuario) para evitar bloqueos en mobile
+			if (!paymentWindowRef.current || paymentWindowRef.current.closed) {
+				paymentWindowRef.current = window.open('about:blank', '_blank');
+			}
 			// Después de 4 segundos, redirigir al link de Mercado Pago
 			const timer = setTimeout(() => {
-				window.open(MERCADOPAGO_LINK, '_blank');
+				if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
+					paymentWindowRef.current.location.href = MERCADOPAGO_LINK;
+				} else {
+					window.location.href = MERCADOPAGO_LINK;
+				}
 				setRedirected(true);
 			}, 4000);
 
@@ -32,6 +41,9 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 			setError('');
 			setRedirected(false);
 			setShowSuccessMessage(false);
+			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
+				paymentWindowRef.current = null;
+			}
 		}
 	}, [show]);
 
@@ -78,13 +90,20 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 		setShowSuccessMessage(true);
 
 		setTimeout(() => {
-			window.open(whatsappUrl, '_blank');
+			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
+				paymentWindowRef.current.location.href = whatsappUrl;
+			} else {
+				window.open(whatsappUrl, '_blank');
+			}
 			clearCart();
 			onHide();
 			setRedirected(false);
 			setComprobante('');
 			setError('');
 			setShowSuccessMessage(false);
+			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
+				paymentWindowRef.current = null;
+			}
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}, 4000);
 	};

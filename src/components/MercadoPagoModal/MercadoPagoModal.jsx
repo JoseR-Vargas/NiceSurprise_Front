@@ -77,15 +77,19 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
+		// Abrir ventana en el gesto del usuario para asegurar redirección en iOS
+		const waWindow = window.open('about:blank', '_blank');
 
 		// Mostrar pantalla de éxito y, tras 4s, abrir WhatsApp y cerrar
 		setShowSuccessMessage(true);
 
 		setTimeout(() => {
-			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
+			if (waWindow && !waWindow.closed) {
+				waWindow.location.href = whatsappUrl;
+			} else if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
 				paymentWindowRef.current.location.href = whatsappUrl;
 			} else {
-				window.open(whatsappUrl, '_blank');
+				window.location.href = whatsappUrl;
 			}
 			clearCart();
 			onHide();

@@ -2,12 +2,16 @@ import { Modal, Button, Container, Row, Col, Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
+import TransferModal from '../TransferModal/TransferModal';
+import MercadoPagoModal from '../MercadoPagoModal/MercadoPagoModal';
 import './CartModal.css';
 
 const CartModal = ({ show, onHide }) => {
 	const { cart, updateQuantity, removeFromCart, getCartTotal } = useCart();
 	const [showCheckout, setShowCheckout] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
+	const [showTransferModal, setShowTransferModal] = useState(false);
+	const [showMercadoPagoModal, setShowMercadoPagoModal] = useState(false);
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -46,6 +50,8 @@ const CartModal = ({ show, onHide }) => {
 		window.addEventListener('resize', checkMobile);
 		return () => window.removeEventListener('resize', checkMobile);
 	}, []);
+
+
 
 	const validatePhone = (phone) => {
 		const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
@@ -99,6 +105,15 @@ const CartModal = ({ show, onHide }) => {
 			newErrors.telefono = 'Formato de teléfono inválido. Use formato argentino';
 		}
 
+		// Validar que seleccionó al menos una opción
+		if (!formData.delivery && !formData.retirar) {
+			toast.error('Debes seleccionar "Delivery" o "Pasar a retirar"', {
+				position: 'top-center',
+				autoClose: 3000,
+			});
+			return false;
+		}
+
 		if (formData.delivery) {
 			if (!formData.calle.trim()) {
 				newErrors.calle = 'La calle es obligatoria para delivery';
@@ -122,31 +137,25 @@ const CartModal = ({ show, onHide }) => {
 		if (!validateForm()) {
 			return;
 		}
-
-		console.log('Método de pago:', paymentMethod);
-		console.log('Datos del formulario:', formData);
-		console.log('Carrito:', cart);
 		
-		if (isMobile) {
-			toast.success('Pedido procesado correctamente', {
-				position: 'bottom-center',
-				autoClose: 2000,
-			});
-			setTimeout(() => {
-				handleClose();
-			}, 2000);
-		} else {
-			toast.success('Pedido procesado correctamente', {
-				position: 'top-right',
-				autoClose: 2000,
-			});
-			setTimeout(() => {
-				handleClose();
-			}, 2000);
+		// Para transferencia, mostrar modal con datos bancarios
+		if (paymentMethod === 'transferencia') {
+			setShowTransferModal(true);
+			return;
+		}
+		
+		// Para mercadopago, mostrar modal de Mercado Pago
+		if (paymentMethod === 'mercadopago') {
+			setShowMercadoPagoModal(true);
+			return;
 		}
 	};
 
 	const handleClose = () => {
+		// No cerrar si el TransferModal o MercadoPagoModal están abiertos
+		if (showTransferModal || showMercadoPagoModal) {
+			return;
+		}
 		setShowCheckout(false);
 		setFormData({
 			nombre: '',
@@ -182,8 +191,9 @@ const CartModal = ({ show, onHide }) => {
 	const cartTotal = getCartTotal();
 
 	return (
+		<>
 		<Modal
-			show={show}
+			show={show && !showTransferModal && !showMercadoPagoModal}
 			onHide={handleClose}
 			size="lg"
 			centered
@@ -431,14 +441,22 @@ const CartModal = ({ show, onHide }) => {
 								<Button
 									variant="success"
 									className="checkout-payment-btn"
-									onClick={() => handlePayment('transferencia')}
+									onClick={(e) => {
+										e.preventDefault();
+										handlePayment('transferencia');
+									}}
+									type="button"
 								>
 									Paga con Transferencia
 								</Button>
 								<Button
 									variant="primary"
 									className="checkout-payment-btn"
-									onClick={() => handlePayment('mercadopago')}
+									onClick={(e) => {
+										e.preventDefault();
+										handlePayment('mercadopago');
+									}}
+									type="button"
 								>
 									Mercadopago
 								</Button>
@@ -477,8 +495,18 @@ const CartModal = ({ show, onHide }) => {
 				</Modal.Footer>
 			)}
 		</Modal>
+		<TransferModal 
+			show={showTransferModal} 
+			onHide={() => setShowTransferModal(false)}
+			formData={formData}
+		/>
+		<MercadoPagoModal 
+			show={showMercadoPagoModal} 
+			onHide={() => setShowMercadoPagoModal(false)}
+			formData={formData}
+		/>
+		</>
 	);
 };
 
 export default CartModal;
-

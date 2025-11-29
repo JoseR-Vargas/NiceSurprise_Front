@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 import TransferModal from '../TransferModal/TransferModal';
+import MercadoPagoModal from '../MercadoPagoModal/MercadoPagoModal';
 import './ProductModal.css';
 
 const ProductModal = ({ product, show, onHide }) => {
@@ -12,6 +13,7 @@ const ProductModal = ({ product, show, onHide }) => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [showCheckout, setShowCheckout] = useState(false);
 	const [showTransferModal, setShowTransferModal] = useState(false);
+	const [showMercadoPagoModal, setShowMercadoPagoModal] = useState(false);
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -155,44 +157,9 @@ const ProductModal = ({ product, show, onHide }) => {
 		console.log('Método de pago:', paymentMethod);
 		console.log('Datos del formulario:', formData);
 		
-		// Si es MercadoPago, redirigir al link de pago
+		// Si es MercadoPago, abrir el modal de Mercado Pago
 		if (paymentMethod === 'mercadopago') {
-			// Links específicos por producto
-			let mercadoPagoLink = 'https://mpago.la/238UcnC'; // Default
-			
-			// Asignar link según el producto
-			if (product && product.id === 1) {
-				// PicArbolito Mágico
-				mercadoPagoLink = 'https://mpago.la/2pt5Noz';
-			} else if (product && product.id === 2) {
-				// Gatita Tierna
-				mercadoPagoLink = 'https://mpago.la/2FZXnU7';
-			} else if (product && product.id === 3) {
-				// Picada Navideña Premium
-				mercadoPagoLink = 'https://mpago.la/1szSxfG';
-			} else if (product && product.id === 4) {
-				// Minnie Magic Box
-				mercadoPagoLink = 'https://mpago.la/1szSxfG';
-			}
-			
-			window.open(mercadoPagoLink, '_blank');
-			
-			// Mostrar mensaje de éxito y cerrar modal
-			if (isMobile) {
-				setShowSuccessMessage(true);
-				setTimeout(() => {
-					setShowSuccessMessage(false);
-					handleClose();
-				}, 2000);
-			} else {
-				toast.success('Redirigiendo a MercadoPago...', {
-					position: 'top-right',
-					autoClose: 2000,
-				});
-				setTimeout(() => {
-					handleClose();
-				}, 2000);
-			}
+			setShowMercadoPagoModal(true);
 			return;
 		}
 		
@@ -221,6 +188,12 @@ const ProductModal = ({ product, show, onHide }) => {
 
 	// Resetear cantidad cuando se cierra o cambia el modal
 	const handleClose = () => {
+		// No cerrar si hay modales de pago abiertos
+		if (showTransferModal || showMercadoPagoModal) {
+			return;
+		}
+		setShowTransferModal(false);
+		setShowMercadoPagoModal(false);
 		setQuantity(1);
 		setShowCheckout(false);
 		setFormData({
@@ -265,6 +238,8 @@ const ProductModal = ({ product, show, onHide }) => {
 				esquina: '',
 				zona: ''
 			});
+			setShowMercadoPagoModal(false);
+			setShowTransferModal(false);
 			setErrors({});
 		}
 	}, [product]);
@@ -272,8 +247,9 @@ const ProductModal = ({ product, show, onHide }) => {
 	if (!product) return null;
 
 	return (
+		<>
 		<Modal
-			show={show}
+			show={show && !showTransferModal && !showMercadoPagoModal}
 			onHide={handleClose}
 			size="lg"
 			centered
@@ -546,13 +522,19 @@ const ProductModal = ({ product, show, onHide }) => {
 					</>
 				)}
 			</Modal.Footer>
-			<TransferModal 
-				show={showTransferModal} 
-				onHide={() => setShowTransferModal(false)} 
-			/>
 		</Modal>
+		<TransferModal 
+			show={showTransferModal} 
+			onHide={() => setShowTransferModal(false)}
+			formData={formData}
+		/>
+		<MercadoPagoModal 
+			show={showMercadoPagoModal} 
+			onHide={() => setShowMercadoPagoModal(false)}
+			formData={formData}
+		/>
+		</>
 	);
 };
 
 export default ProductModal;
-

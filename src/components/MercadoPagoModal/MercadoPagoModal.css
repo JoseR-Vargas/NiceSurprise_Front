@@ -1,0 +1,206 @@
+.mercadopago-modal .modal-content {
+	border-radius: 20px;
+	border: none;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.mercadopago-modal-header {
+	background: linear-gradient(135deg, #009ee3 0%, #0074ba 100%);
+	color: white;
+	border-radius: 20px 20px 0 0;
+	padding: 20px 25px;
+	border-bottom: none;
+}
+
+.mercadopago-modal-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.mercadopago-modal-header .btn-close {
+	filter: brightness(0) invert(1);
+	opacity: 0.8;
+}
+
+.mercadopago-modal-header .btn-close:hover {
+	opacity: 1;
+}
+
+.mercadopago-modal-body {
+	padding: 30px 25px;
+}
+
+.mercadopago-content {
+	min-height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.mercadopago-loading {
+	text-align: center;
+	padding: 40px 20px;
+}
+
+.mercadopago-loading .spinner-border {
+	width: 3rem;
+	height: 3rem;
+	border-width: 0.3em;
+}
+
+.mercadopago-loading p {
+	font-size: 1.1rem;
+	color: #333;
+	margin-bottom: 5px;
+}
+
+.mercadopago-instructions {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.instruction-icon {
+	font-size: 3rem;
+	margin-bottom: 15px;
+	animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.mercadopago-instructions h5 {
+	color: #28a745;
+	font-weight: 700;
+	margin-bottom: 15px;
+	font-size: 1.3rem;
+}
+
+.mercadopago-instructions p {
+	color: #666;
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+
+.comprobante-section {
+	background: #f8f9fa;
+	padding: 25px;
+	border-radius: 15px;
+	margin-bottom: 20px;
+}
+
+.comprobante-section .form-label {
+	color: #333;
+	margin-bottom: 12px;
+	display: block;
+	font-size: 1rem;
+}
+
+.comprobante-input {
+	font-size: 1.8rem;
+	font-weight: 700;
+	letter-spacing: 8px;
+	padding: 15px;
+	border: 2px solid #009ee3;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.comprobante-input:focus {
+	border-color: #0074ba;
+	box-shadow: 0 0 0 0.2rem rgba(0, 158, 227, 0.25);
+}
+
+.comprobante-input.is-invalid {
+	border-color: #dc3545;
+}
+
+.mercadopago-info {
+	background: #fff3cd;
+	border-left: 4px solid #ffc107;
+	padding: 15px;
+	border-radius: 8px;
+}
+
+.info-text {
+	margin-bottom: 8px;
+	color: #856404;
+}
+
+.mercadopago-modal-footer {
+	border-top: 1px solid #e9ecef;
+	padding: 20px 25px;
+	gap: 10px;
+}
+
+.mercadopago-cancel-btn {
+	padding: 10px 25px;
+	border-radius: 10px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.mercadopago-cancel-btn:hover {
+	background-color: #6c757d;
+	color: white;
+	transform: translateY(-2px);
+}
+
+.mercadopago-notify-btn {
+	padding: 10px 25px;
+	border-radius: 10px;
+	font-weight: 600;
+	background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+	border: none;
+	transition: all 0.3s ease;
+}
+
+.mercadopago-notify-btn:hover:not(:disabled) {
+	background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.mercadopago-notify-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.mercadopago-modal-title {
+		font-size: 1.2rem;
+	}
+
+	.mercadopago-modal-body {
+		padding: 20px 15px;
+	}
+
+	.comprobante-input {
+		font-size: 1.5rem;
+		letter-spacing: 5px;
+	}
+
+	.mercadopago-instructions h5 {
+		font-size: 1.1rem;
+	}
+
+	.mercadopago-instructions p {
+		font-size: 0.9rem;
+	}
+
+	.comprobante-section {
+		padding: 20px 15px;
+	}
+}

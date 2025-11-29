@@ -1,9 +1,11 @@
 import { Modal, Button, Container, Form } from 'react-bootstrap';
 import { useState } from 'react';
+import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 import './TransferModal.css';
 
-const TransferModal = ({ show, onHide }) => {
+const TransferModal = ({ show, onHide, formData = {} }) => {
+	const { cart, getCartTotal } = useCart();
 	const [copiedField, setCopiedField] = useState(null);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -62,19 +64,43 @@ const TransferModal = ({ show, onHide }) => {
 			return;
 		}
 
-		// Aquí puedes agregar la lógica para notificar al vendedor
-		console.log('Notificando al vendedor con comprobante:', lastFourDigits);
-		
+		const phoneNumber = '5493516600019'; // Número de WhatsApp del vendedor
+
+		const productosDetalle = cart.map(item => 
+			`- ${item.title} (x${item.quantity}): $${(item.price * item.quantity).toFixed(2)}`
+		).join('\n');
+
+		const deliveryInfo = formData.delivery
+			? `\n📍 *Dirección de entrega:*\n${formData.calle} ${formData.numero}, ${formData.esquina}\nZona: ${formData.zona}`
+			: formData.retirar
+				? '\n📦 *Retira en local*'
+				: '';
+
+		const mensaje = `🎉 *Nuevo Pedido - Nice Surprise* 🎉\n\n` +
+			`👤 *Cliente:* ${formData.nombre || ''} ${formData.apellido || ''}\n` +
+			`📱 *Teléfono:* ${formData.telefono || ''}\n\n` +
+			`🛍️ *Productos:*\n${productosDetalle}\n\n` +
+			`💰 *Total:* $${getCartTotal().toFixed(2)}\n` +
+			`${deliveryInfo}\n\n` +
+			`💳 *Método de pago:* Transferencia\n` +
+			`🧾 *Comprobante:* ${lastFourDigits}\n\n` +
+			`✅ Pago realizado y listo para procesar`;
+
+		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
+
 		// Mostrar mensaje de éxito en el modal
 		setShowSuccessMessage(true);
 
-		// Cerrar modal después de un momento
+		// Mostrar confirmación 4s y luego abrir WhatsApp y cerrar
 		setTimeout(() => {
+			window.open(whatsappUrl, '_blank');
 			onHide();
 			setShowConfirmation(false);
 			setShowSuccessMessage(false);
 			setLastFourDigits('');
 			setDigitError('');
+			// Llevar al usuario al inicio de la página
+			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}, 4000);
 	};
 

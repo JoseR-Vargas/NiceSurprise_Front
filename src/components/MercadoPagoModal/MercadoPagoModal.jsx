@@ -77,7 +77,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
-		// Mostrar pantalla de éxito y, tras 4s, abrir WhatsApp y cerrar
+		// Mostrar pantalla de éxito y, tras 2s, abrir WhatsApp y cerrar
 		setShowSuccessMessage(true);
 
 		setTimeout(() => {
@@ -97,7 +97,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 			setShowSuccessMessage(false);
 			paymentWindowRef.current = null;
 			window.scrollTo({ top: 0, behavior: 'smooth' });
-		}, 4000);
+		}, 2000);
 	};
 
 	return (
@@ -110,7 +110,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 		>
 			<Modal.Header closeButton className="mercadopago-modal-header">
 				<Modal.Title className="mercadopago-modal-title">
-					💳 Pago con Mercado Pago
+					Pago con Mercado Pago
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body className="mercadopago-modal-body">
@@ -186,19 +186,12 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 			{redirected && !showSuccessMessage && (
 				<Modal.Footer className="mercadopago-modal-footer">
 					<Button
-						variant="outline-secondary"
-						onClick={onHide}
-						className="mercadopago-cancel-btn"
-					>
-						Cancelar
-					</Button>
-					<Button
 						variant="success"
 						onClick={handleNotificarVendedor}
 						className="mercadopago-notify-btn"
 						disabled={comprobante.length !== 4}
 					>
-						🔔 Notificar al Vendedor
+						Notificar al Vendedor
 					</Button>
 				</Modal.Footer>
 			)}

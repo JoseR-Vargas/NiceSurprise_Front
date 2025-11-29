@@ -1,9 +1,10 @@
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '../../context/CartContext';
+import { MERCADOPAGO_LINK } from '../../constants/mercadopago';
 import './MercadoPagoModal.css';
 
-const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
+const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = false }) => {
 	const { cart, getCartTotal, clearCart } = useCart();
 	const [comprobante, setComprobante] = useState('');
 	const [error, setError] = useState('');
@@ -11,23 +12,21 @@ const MercadoPagoModal = ({ show, onHide, formData = {} }) => {
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const paymentWindowRef = useRef(null);
 
-	// URL de Mercado Pago para PicArbolito Mágico
-	const MERCADOPAGO_LINK = 'https://mpago.la/2pt5Noz';
-
 	useEffect(() => {
-		if (show && !redirected) {
-			// Después de 4 segundos, redirigir al link de Mercado Pago
-			const timer = setTimeout(() => {
-				const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
-				if (popup) {
-					paymentWindowRef.current = popup;
-				}
-				setRedirected(true);
-			}, 4000);
-
-			return () => clearTimeout(timer);
+		if (show && initialRedirected) {
+			setRedirected(true);
+			return;
 		}
-	}, [show, redirected, MERCADOPAGO_LINK]);
+
+		if (show && !redirected) {
+			// Abrir el link de pago inmediatamente en una nueva pestaña (evita bloqueos en mobile)
+			const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
+			if (popup) {
+				paymentWindowRef.current = popup;
+			}
+			setRedirected(true);
+		}
+	}, [show, redirected, MERCADOPAGO_LINK, initialRedirected]);
 
 	// Resetear estado cuando se cierra el modal
 	useEffect(() => {

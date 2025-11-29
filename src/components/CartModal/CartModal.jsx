@@ -4,6 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 import TransferModal from '../TransferModal/TransferModal';
 import MercadoPagoModal from '../MercadoPagoModal/MercadoPagoModal';
+import { MERCADOPAGO_LINK } from '../../constants/mercadopago';
 import './CartModal.css';
 
 const CartModal = ({ show, onHide }) => {
@@ -12,6 +13,7 @@ const CartModal = ({ show, onHide }) => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [showTransferModal, setShowTransferModal] = useState(false);
 	const [showMercadoPagoModal, setShowMercadoPagoModal] = useState(false);
+	const [mercadoPagoStarted, setMercadoPagoStarted] = useState(false);
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -146,6 +148,13 @@ const CartModal = ({ show, onHide }) => {
 		
 		// Para mercadopago, mostrar modal de Mercado Pago
 		if (paymentMethod === 'mercadopago') {
+			// Abrir link en nueva pestaña inmediatamente para evitar bloqueos en mobile
+			const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
+			const started = !!popup;
+			if (!started) {
+				console.warn('Popup bloqueado al abrir Mercado Pago');
+			}
+			setMercadoPagoStarted(started);
 			setShowMercadoPagoModal(true);
 			return;
 		}
@@ -156,6 +165,7 @@ const CartModal = ({ show, onHide }) => {
 		if (showTransferModal || showMercadoPagoModal) {
 			return;
 		}
+		setMercadoPagoStarted(false);
 		setShowCheckout(false);
 		setFormData({
 			nombre: '',
@@ -174,6 +184,7 @@ const CartModal = ({ show, onHide }) => {
 
 	const handleBackToCart = () => {
 		setShowCheckout(false);
+		setMercadoPagoStarted(false);
 		setFormData({
 			nombre: '',
 			apellido: '',
@@ -503,6 +514,7 @@ const CartModal = ({ show, onHide }) => {
 		<MercadoPagoModal 
 			show={showMercadoPagoModal} 
 			onHide={() => setShowMercadoPagoModal(false)}
+			initialRedirected={mercadoPagoStarted}
 			formData={formData}
 		/>
 		</>

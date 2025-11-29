@@ -4,6 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 import TransferModal from '../TransferModal/TransferModal';
 import MercadoPagoModal from '../MercadoPagoModal/MercadoPagoModal';
+import { MERCADOPAGO_LINK } from '../../constants/mercadopago';
 import './ProductModal.css';
 
 const ProductModal = ({ product, show, onHide }) => {
@@ -14,6 +15,7 @@ const ProductModal = ({ product, show, onHide }) => {
 	const [showCheckout, setShowCheckout] = useState(false);
 	const [showTransferModal, setShowTransferModal] = useState(false);
 	const [showMercadoPagoModal, setShowMercadoPagoModal] = useState(false);
+	const [mercadoPagoStarted, setMercadoPagoStarted] = useState(false);
 	const [formData, setFormData] = useState({
 		nombre: '',
 		apellido: '',
@@ -157,8 +159,14 @@ const ProductModal = ({ product, show, onHide }) => {
 		console.log('Método de pago:', paymentMethod);
 		console.log('Datos del formulario:', formData);
 		
-		// Si es MercadoPago, abrir el modal de Mercado Pago
+		// Si es MercadoPago, abrir el link y mostrar el modal
 		if (paymentMethod === 'mercadopago') {
+			const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
+			const started = !!popup;
+			if (!started) {
+				console.warn('Popup bloqueado al abrir Mercado Pago');
+			}
+			setMercadoPagoStarted(started);
 			setShowMercadoPagoModal(true);
 			return;
 		}
@@ -172,6 +180,7 @@ const ProductModal = ({ product, show, onHide }) => {
 
 	const handleBackToProduct = () => {
 		setShowCheckout(false);
+		setMercadoPagoStarted(false);
 		setFormData({
 			nombre: '',
 			apellido: '',
@@ -192,6 +201,7 @@ const ProductModal = ({ product, show, onHide }) => {
 		if (showTransferModal || showMercadoPagoModal) {
 			return;
 		}
+		setMercadoPagoStarted(false);
 		setShowTransferModal(false);
 		setShowMercadoPagoModal(false);
 		setQuantity(1);
@@ -227,6 +237,7 @@ const ProductModal = ({ product, show, onHide }) => {
 			setQuantity(1);
 			setShowSuccessMessage(false);
 			setShowCheckout(false);
+			setMercadoPagoStarted(false);
 			setFormData({
 				nombre: '',
 				apellido: '',
@@ -531,6 +542,7 @@ const ProductModal = ({ product, show, onHide }) => {
 		<MercadoPagoModal 
 			show={showMercadoPagoModal} 
 			onHide={() => setShowMercadoPagoModal(false)}
+			initialRedirected={mercadoPagoStarted}
 			formData={formData}
 		/>
 		</>

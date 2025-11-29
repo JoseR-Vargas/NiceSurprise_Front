@@ -12,13 +12,15 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 	const [lastFourDigits, setLastFourDigits] = useState('');
 	const [digitError, setDigitError] = useState('');
 
-	// Datos bancarios mockeados
+	// Datos bancarios reales
 	const transferData = {
-		banco: 'Banco Nación',
-		titular: 'Nice Surprise',
-		cbu: '0110593520000012345678',
-		alias: 'NICE.SURPRISE.REGALOS',
-		cuit: '20-12345678-9'
+		banco: 'Naranja X',
+		titular: 'Genesis Diana Heredia Machillanda',
+		cbu: '4530000800017570875477',
+		alias: 'GENESISHERE',
+		cuit: '27-95856479-7',
+		tipoCuenta: 'Caja de ahorro en pesos',
+		numeroCuenta: '1757087547'
 	};
 
 	const handleCopy = (text, fieldName) => {

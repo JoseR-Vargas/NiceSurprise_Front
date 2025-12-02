@@ -7,6 +7,7 @@ import picada1 from '../../img/picada_1.jpeg';
 import arreglo1 from '../../img/arreglo_1.jpeg';
 import picada2 from '../../img/picada_2.jpeg';
 import arreglo2 from '../../img/arreglo_2.jpeg';
+import egreso1 from '../../img/egreso_1.jpeg';
 import './ProductsSection.css';
 
 const ProductsSection = () => {
@@ -53,6 +54,14 @@ const ProductsSection = () => {
 			description: 'Caja sorpresa mágica con Minnie Mouse, globos brillantes, dulces y detalles especiales para una celebración inolvidable llena de magia.',
 			price: 36800,
 			image: arreglo2,
+		},
+		{
+			id: 5,
+			title: '¡Feliz Egreso! 🎓',
+			description: 'Caja sorpresa especial para celebrar ese gran logro académico. Incluye adorable peluche con birrete de graduación, globo transparente decorado con lazos dorados, chocolates Ferrero Rocher y dulces especiales. Base elegante con mensaje "Felicidades Egresado/a". El regalo perfecto para felicitar a ese profesional que alcanzó su meta con esfuerzo y dedicación.',
+			price: 64800,
+			image: egreso1,
+			paymentLink: 'https://mpago.la/2cJaApp',
 		},
 	];
 

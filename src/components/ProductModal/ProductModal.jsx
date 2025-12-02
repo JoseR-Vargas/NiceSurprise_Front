@@ -161,7 +161,9 @@ const ProductModal = ({ product, show, onHide }) => {
 		
 		// Si es MercadoPago, abrir el link y mostrar el modal
 		if (paymentMethod === 'mercadopago') {
-			const popup = window.open(MERCADOPAGO_LINK, '_blank', 'noopener,noreferrer');
+			// Usar el paymentLink del producto si existe, sino usar el genérico
+			const mpLink = product?.paymentLink || MERCADOPAGO_LINK;
+			const popup = window.open(mpLink, '_blank', 'noopener,noreferrer');
 			const started = !!popup;
 			if (!started) {
 				console.warn('Popup bloqueado al abrir Mercado Pago');

@@ -69,17 +69,17 @@ const ProductsSection = () => {
 			id: 6,
 			title: 'Ohana Stitch Box 💙✨',
 			description: 'Caja encantadora con peluche de Stitch, globos metálicos azules, chocolates Ferrero Rocher y flores de papel. Ohana significa familia.',
-			price: 0,
+			price: 38000,
 			image: stitch1,
-			paymentLink: '',
+			paymentLink: 'https://mpago.la/1csgtWr',
 		},
 		{
 			id: 7,
 			title: 'Osito Graduado 🎓🐻',
 			description: 'Arreglo especial con adorable osito de graduación, globos dorados en forma de corazón, chocolates y dulces premium. ¡Celebra el éxito con estilo!',
-			price: 0,
+			price: 34800,
 			image: ositoEgresado,
-			paymentLink: '',
+			paymentLink: 'https://mpago.la/1jvWb2e',
 		},
 	];
 

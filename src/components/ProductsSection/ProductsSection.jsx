@@ -3,13 +3,15 @@ import { useState } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductModal from '../ProductModal/ProductModal';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import picada1 from '../../img/picada_1.jpeg';
 import arreglo1 from '../../img/arreglo_1.jpeg';
-import picada2 from '../../img/picada_2.jpeg';
 import arreglo2 from '../../img/arreglo_2.jpeg';
 import egreso1 from '../../img/egreso_1.jpeg';
 import stitch1 from '../../img/stitch_1.jpeg';
-import ositoEgresado from '../../img/osito_egresado.jpeg';
+import sanValentin from '../../img/san_valentin.jpeg';
+import osoAniversario from '../../img/oso_aniversario.jpeg';
+import picadaRomantica from '../../img/picada_romantica.jpeg';
+import picada1 from '../../img/picada_1.jpeg';
+import picadaCompartir from '../../img/picada_compartir.jpeg';
 import './ProductsSection.css';
 
 const ProductsSection = () => {
@@ -31,55 +33,65 @@ const ProductsSection = () => {
 	const products = [
 		{
 			id: 1,
-			title: 'PicArbolito Mágico 🎄✨',
-			description: 'Picada artesanal en forma de árbol navideño con quesos premium, embutidos, uvas, aceitunas y crackers. Decorado con luces y estrella dorada.',
-			price: 38800,
-			image: picada1,
+			title: 'Amor en Caja San Valentín 💕',
+			description: 'Sorpresa especial de San Valentín con peluche kawaii, globo personalizado, mariposa decorativa, chocolates y dulces. ¡Amor en cada detalle!',
+			price: 88000,
+			image: sanValentin,
+			paymentLink: 'https://mpago.la/1jNaJyD',
+		},
+		{
+			id: 7,
+			title: 'Aniversario Romántico 💖',
+			description: 'Osito tierno con globos de corazón personalizados, números metálicos, chocolates y detalles especiales. Perfecta para celebrar su amor.',
+			price: 69800,
+			image: osoAniversario,
+			paymentLink: 'https://mpago.la/1e5sSuM'
+		},
+		{
+			id: 8,
+			title: 'Picada Gourmet Romántica 🧀❤️',
+			description: 'Deliciosa selección de quesos, jamones premium, fresas frescas y frutos secos. Ideal para compartir momentos especiales en pareja.',
+			price: 38000,
+			image: picadaRomantica,
+			paymentLink: 'https://mpago.la/1dY45J9'
+		},
+		{
+			id: 9,
+			title: 'Tabla Premium Deluxe 🍇🧀',
+			description: 'Tabla completa con variedades de quesos, embutidos artesanales, frutas frescas, frutos secos y pepinillos. Perfecta para celebraciones especiales.',
+			price: 68000,
+			image: picadaCompartir,
+			paymentLink: 'https://mpago.la/2pGooLm'
 		},
 		{
 			id: 2,
-			title: 'Gatita Tierna 💕',
+			title: 'Ternura',
 			description: 'Caja sorpresa con peluche adorable, globos festivos, chocolates y dulces especiales. Un detalle lleno de ternura para quien amas.',
 			price: 76000,
 			image: arreglo1,
 		},
 		{
-			id: 3,
-			title: 'Picada Navideña Premium 🎅🎁',
-			description: 'Picada gourmet en forma de árbol con quesos artesanales, embutidos premium, frutos secos y aceitunas. Ideal para compartir.',
-			price: 36800,
-			image: picada2,
-		},
-		{
 			id: 4,
-			title: 'Minnie Magic Box ✨',
+			title: 'Magia Minnie',
 			description: 'Caja sorpresa mágica con Minnie Mouse, globos brillantes y dulces especiales para una celebración inolvidable llena de magia.',
-			price: 36800,
+			price: 48000,
 			image: arreglo2,
 		},
 		{
 			id: 5,
-			title: '¡Feliz Egreso! 🎓',
+			title: 'Tu Logro',
 			description: 'Caja especial para celebrar el logro académico. Incluye peluche con birrete, globo decorado, chocolates Ferrero Rocher y mensaje de felicitación.',
-			price: 64800,
+			price: 74800,
 			image: egreso1,
 			paymentLink: 'https://mpago.la/2cJaApp',
 		},
 		{
 			id: 6,
-			title: 'Ohana Stitch Box 💙✨',
+			title: 'Ohana',
 			description: 'Caja encantadora con peluche de Stitch, globos metálicos azules, chocolates Ferrero Rocher y flores de papel. Ohana significa familia.',
-			price: 38000,
+			price: 48000,
 			image: stitch1,
 			paymentLink: 'https://mpago.la/1csgtWr',
-		},
-		{
-			id: 7,
-			title: 'Osito Graduado 🎓🐻',
-			description: 'Arreglo especial con adorable osito de graduación, globos dorados en forma de corazón, chocolates y dulces premium. ¡Celebra el éxito con estilo!',
-			price: 34800,
-			image: ositoEgresado,
-			paymentLink: 'https://mpago.la/1jvWb2e',
 		},
 	];
 
@@ -124,4 +136,3 @@ const ProductsSection = () => {
 };
 
 export default ProductsSection;
-

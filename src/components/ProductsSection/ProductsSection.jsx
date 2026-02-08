@@ -31,6 +31,7 @@ const ProductsSection = () => {
 	};
 
 	// Datos de productos de ejemplo
+
 	const products = [
 		{
 			id: 1,
@@ -41,7 +42,7 @@ const ProductsSection = () => {
 			paymentLink: 'https://mpago.la/1jNaJyD',
 		},
 		{
-			id: 7,
+			id: 2,
 			title: 'Aniversario Romántico 💖',
 			description: 'Osito tierno con globos de corazón personalizados, números metálicos, chocolates y detalles especiales. Perfecta para celebrar su amor.',
 			price: 69800,
@@ -49,7 +50,7 @@ const ProductsSection = () => {
 			paymentLink: 'https://mpago.la/1e5sSuM'
 		},
 		{
-			id: 8,
+			id: 3,
 			title: 'Picada Gourmet Romántica 🧀❤️',
 			description: 'Deliciosa selección de quesos, jamones premium, fresas frescas y frutos secos. Ideal para compartir momentos especiales en pareja.',
 			price: 38000,
@@ -57,7 +58,7 @@ const ProductsSection = () => {
 			paymentLink: 'https://mpago.la/1dY45J9'
 		},
 		{
-			id: 9,
+			id: 4,
 			title: 'Tabla Premium Deluxe 🍇🧀',
 			description: 'Tabla completa con variedades de quesos, embutidos artesanales, frutas frescas, frutos secos y pepinillos. Perfecta para celebraciones especiales.',
 			price: 68000,
@@ -65,29 +66,23 @@ const ProductsSection = () => {
 			paymentLink: 'https://mpago.la/2pGooLm'
 		},
 		{
-			id: 10,
+			id: 5,
 			title: 'Intensamente Amor ❤️🔥',
 			description: 'Furia dice "Te Amo" con chocolates Ferrero Rocher y globos personalizados. Un detalle único que combina humor y amor.',
 			price: 53000,
 			image: furiaSorpresa,
 			paymentLink: 'https://mpago.la/2bUcDr1'
 		},
+
 		{
-			id: 2,
-			title: 'Ternura',
-			description: 'Caja sorpresa con peluche adorable, globos festivos, chocolates y dulces especiales. Un detalle lleno de ternura para quien amas.',
-			price: 76000,
-			image: arreglo1,
-		},
-		{
-			id: 4,
+			id: 6,
 			title: 'Magia Minnie',
 			description: 'Caja sorpresa mágica con Minnie Mouse, globos brillantes y dulces especiales para una celebración inolvidable llena de magia.',
 			price: 48000,
 			image: arreglo2,
 		},
 		{
-			id: 5,
+			id: 7,
 			title: 'Tu Logro',
 			description: 'Caja especial para celebrar el logro académico. Incluye peluche con birrete, globo decorado, chocolates Ferrero Rocher y mensaje de felicitación.',
 			price: 74800,
@@ -95,7 +90,7 @@ const ProductsSection = () => {
 			paymentLink: 'https://mpago.la/2cJaApp',
 		},
 		{
-			id: 6,
+			id: 8,
 			title: 'Ohana',
 			description: 'Caja encantadora con peluche de Stitch, globos metálicos azules, chocolates Ferrero Rocher y flores de papel. Ohana significa familia.',
 			price: 48000,

@@ -12,6 +12,7 @@ import osoAniversario from '../../img/oso_aniversario.jpeg';
 import picadaRomantica from '../../img/picada_romantica.jpeg';
 import picada1 from '../../img/picada_1.jpeg';
 import picadaCompartir from '../../img/picada_compartir.jpeg';
+import furiaSorpresa from '../../img/furia_sorpresa.jpeg';
 import './ProductsSection.css';
 
 const ProductsSection = () => {
@@ -62,6 +63,14 @@ const ProductsSection = () => {
 			price: 68000,
 			image: picadaCompartir,
 			paymentLink: 'https://mpago.la/2pGooLm'
+		},
+		{
+			id: 10,
+			title: 'Intensamente Amor ❤️🔥',
+			description: 'Furia dice "Te Amo" con chocolates Ferrero Rocher y globos personalizados. Un detalle único que combina humor y amor.',
+			price: 53000,
+			image: furiaSorpresa,
+			paymentLink: 'https://mpago.la/2bUcDr1'
 		},
 		{
 			id: 2,

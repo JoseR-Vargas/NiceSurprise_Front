@@ -1,4 +1,4 @@
-import { Modal, Button, Container, Form } from 'react-bootstrap';
+import { Modal, Button, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
@@ -9,8 +9,6 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 	const [copiedField, setCopiedField] = useState(null);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [lastFourDigits, setLastFourDigits] = useState('');
-	const [digitError, setDigitError] = useState('');
 
 	// Datos bancarios reales
 	const transferData = {
@@ -42,30 +40,15 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 		});
 	};
 
-	const handleDigitChange = (e) => {
-		const value = e.target.value.replace(/\D/g, ''); // Solo números
-		if (value.length <= 4) {
-			setLastFourDigits(value);
-			setDigitError('');
-		}
-	};
-
 	const handleNextStep = () => {
 		setShowConfirmation(true);
 	};
 
 	const handleBackToTransfer = () => {
 		setShowConfirmation(false);
-		setLastFourDigits('');
-		setDigitError('');
 	};
 
 	const handleNotifyVendor = () => {
-		if (lastFourDigits.length !== 4) {
-			setDigitError('Por favor ingresa los 4 dígitos');
-			return;
-		}
-
 		const phoneNumber = '5493516600019'; // Número de WhatsApp del vendedor
 
 		const productosDetalle = cart.map(item => 
@@ -84,8 +67,7 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 			`🛍️ *Productos:*\n${productosDetalle}\n\n` +
 			`💰 *Total:* $${getCartTotal().toFixed(2)}\n` +
 			`${deliveryInfo}\n\n` +
-			`💳 *Método de pago:* Transferencia\n` +
-			`🧾 *Comprobante:* ${lastFourDigits}\n\n` +
+			`💳 *Método de pago:* Transferencia\n\n` +
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
@@ -93,14 +75,12 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 		// Mostrar mensaje de éxito en el modal
 		setShowSuccessMessage(true);
 
-		// Mostrar confirmación 3s y luego redirigir a WhatsApp (misma pestaña) y cerrar
+		// Mostrar confirmación 3s y luego abrir WhatsApp en nueva pestaña y cerrar modal
 		setTimeout(() => {
-			window.location.href = whatsappUrl;
+			window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 			onHide();
 			setShowConfirmation(false);
 			setShowSuccessMessage(false);
-			setLastFourDigits('');
-			setDigitError('');
 			// Llevar al usuario al inicio de la página
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}, 3000);
@@ -110,8 +90,6 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 		onHide();
 		setShowConfirmation(false);
 		setShowSuccessMessage(false);
-		setLastFourDigits('');
-		setDigitError('');
 	};
 
 	return (
@@ -144,7 +122,7 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 							</div>
 							<h3 className="success-title">¡Notificación Enviada!</h3>
 							<p className="success-message">
-								Hemos recibido tu confirmación de pago con los últimos dígitos <strong>{lastFourDigits}</strong>
+							Hemos recibido tu confirmación de pago.
 							</p>
 							<div className="success-info">
 								<p>
@@ -325,29 +303,8 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 							</div>
 							<h4 className="confirmation-title">¿Ya realizaste la transferencia?</h4>
 							<p className="confirmation-text">
-								Ingresa los últimos 4 dígitos del comprobante de pago para notificar al vendedor:
+								Si ya transferiste, notifica al vendedor presionando el botón de abajo.
 							</p>
-							
-							<Form.Group className="mb-3">
-								<Form.Label className="confirmation-label">
-									Últimos 4 dígitos del comprobante <span className="text-danger">*</span>
-								</Form.Label>
-								<Form.Control
-									type="text"
-									maxLength="4"
-									value={lastFourDigits}
-									onChange={handleDigitChange}
-									placeholder="1234"
-									className="confirmation-input"
-									isInvalid={!!digitError}
-								/>
-								<Form.Control.Feedback type="invalid">
-									{digitError}
-								</Form.Control.Feedback>
-								<Form.Text className="text-muted">
-									Ejemplo: Si tu comprobante termina en 5678, ingresa: 5678
-								</Form.Text>
-							</Form.Group>
 
 							<div className="confirmation-note">
 								<p>
@@ -381,7 +338,6 @@ const TransferModal = ({ show, onHide, formData = {} }) => {
 							variant="success" 
 							onClick={handleNotifyVendor}
 							className="transfer-notify-btn"
-							disabled={lastFourDigits.length !== 4}
 						>
 							Notificar Vendedor
 						</Button>

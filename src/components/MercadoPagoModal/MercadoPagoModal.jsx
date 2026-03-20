@@ -1,4 +1,4 @@
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '../../context/CartContext';
 import { MERCADOPAGO_LINK } from '../../constants/mercadopago';
@@ -6,8 +6,6 @@ import './MercadoPagoModal.css';
 
 const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = false }) => {
 	const { cart, getCartTotal, clearCart } = useCart();
-	const [comprobante, setComprobante] = useState('');
-	const [error, setError] = useState('');
 	const [redirected, setRedirected] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const paymentWindowRef = useRef(null);
@@ -31,29 +29,13 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 	// Resetear estado cuando se cierra el modal
 	useEffect(() => {
 		if (!show) {
-			setComprobante('');
-			setError('');
 			setRedirected(false);
 			setShowSuccessMessage(false);
 			paymentWindowRef.current = null;
 		}
 	}, [show]);
 
-	const handleComprobanteChange = (e) => {
-		const value = e.target.value.replace(/\D/g, ''); // Solo números
-		if (value.length <= 4) {
-			setComprobante(value);
-			if (error) setError('');
-		}
-	};
-
 	const handleNotificarVendedor = () => {
-		// Validar que tenga 4 dígitos
-		if (comprobante.length !== 4) {
-			setError('Debes ingresar los 4 dígitos del comprobante');
-			return;
-		}
-
 		// Preparar mensaje de WhatsApp
 		const phoneNumber = '5493516600019'; // Número del vendedor (mismo que el botón flotante)
 		
@@ -72,8 +54,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 			`🛍️ *Productos:*\n${productosDetalle}\n\n` +
 			`💰 *Total:* $${getCartTotal().toFixed(2)}\n\n` +
 			`${deliveryInfo}\n\n` +
-			`💳 *Método de pago:* Mercado Pago\n` +
-			`🧾 *Comprobante:* ${comprobante}\n\n` +
+			`💳 *Método de pago:* Mercado Pago\n\n` +
 			`✅ Pago realizado y listo para procesar`;
 
 		const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
@@ -81,19 +62,10 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 		setShowSuccessMessage(true);
 
 		setTimeout(() => {
-			if (paymentWindowRef.current && !paymentWindowRef.current.closed) {
-				paymentWindowRef.current.location.href = whatsappUrl;
-			} else {
-				const popup = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-				if (!popup) {
-					window.location.href = whatsappUrl;
-				}
-			}
+			window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 			clearCart();
 			onHide();
 			setRedirected(false);
-			setComprobante('');
-			setError('');
 			setShowSuccessMessage(false);
 			paymentWindowRef.current = null;
 			window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -120,7 +92,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 							<div className="instruction-icon">✅</div>
 							<h5>¡Notificación Enviada!</h5>
 							<p className="mb-3">
-								Hemos recibido tu comprobante con los últimos dígitos <strong>{comprobante}</strong>.
+							Hemos recibido tu confirmación de pago.
 							</p>
 							<div className="mercadopago-info mt-3">
 								<p className="info-text">
@@ -146,29 +118,7 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 							<div className="mercadopago-instructions">
 								<div className="instruction-icon">✅</div>
 								<h5>¡Ya puedes completar el pago!</h5>
-							</div>
-
-							<div className="comprobante-section">
-								<Form.Group>
-									<Form.Label>
-										<strong>Ingresa los últimos 4 dígitos del comprobante</strong>
-									</Form.Label>
-									<Form.Control
-										type="text"
-										placeholder="0000"
-										value={comprobante}
-										onChange={handleComprobanteChange}
-										maxLength={4}
-										className="comprobante-input text-center"
-										isInvalid={!!error}
-									/>
-									<Form.Control.Feedback type="invalid">
-										{error}
-									</Form.Control.Feedback>
-									<Form.Text className="text-muted">
-										Los 4 dígitos del código de transacción
-									</Form.Text>
-								</Form.Group>
+								<p className="mt-3">Si ya realizaste el pago, notifica al vendedor presionando el botón de abajo.</p>
 							</div>
 
 							<div className="mercadopago-info mt-4">
@@ -189,7 +139,6 @@ const MercadoPagoModal = ({ show, onHide, formData = {}, initialRedirected = fal
 						variant="success"
 						onClick={handleNotificarVendedor}
 						className="mercadopago-notify-btn"
-						disabled={comprobante.length !== 4}
 					>
 						Notificar al Vendedor
 					</Button>
